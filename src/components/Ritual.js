@@ -66,8 +66,9 @@ export default function Ritual({ gallery = defaultGallery }) {
               HÌNH THỰC TẾ
             </span>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-serif font-bold text-[#133826] leading-[1.2] lg:leading-[1.15]">
-              Những khoảnh khắc
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[40px] font-serif font-bold text-[#133826] leading-[1.25] lg:leading-[1.18]">
+              <span className="lg:block">Những</span>{" "}
+              <span className="whitespace-nowrap">khoảnh khắc</span>
               <br />
               tại Cỏ Homestay
             </h2>
