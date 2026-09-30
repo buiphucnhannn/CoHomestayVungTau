@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Wave from "./Wave";
 
 const defaultAmenities = [
   {
@@ -59,59 +58,94 @@ const defaultAmenities = [
 
 export default function Services({ amenities = defaultAmenities }) {
   return (
-    <section id="tien-nghi" className="relative py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[12px] md:text-[13px] tracking-[0.2em] font-semibold text-[#C58940] uppercase">
-            TIỆN NGHI
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#133826] mt-2">
-            Đáp ứng mọi nhu cầu cơ bản
-          </h2>
-        </div>
+    <section
+      id="tien-nghi"
+      className="relative w-full overflow-hidden bg-[#FAF7F2] border-y border-[#EADBCE]/80 shadow-[0_4px_25px_rgba(20,56,39,0.03)] text-[#143827] py-14 md:py-20 flex items-center"
+    >
+      {/* SVG clip-path definition for organic curve */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <clipPath id="amenity-organic-curve" clipPathUnits="objectBoundingBox">
+            <path d="M 0.16,0 C 0.06,0.12 0.03,0.24 0.05,0.36 C 0.07,0.50 0.15,0.58 0.13,0.72 C 0.11,0.85 0.03,0.94 0,1 L 1,1 L 1,0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
 
-        {/* Content Layout: Icons Bar + Right Decorative Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/70 backdrop-blur-sm rounded-[32px] p-6 md:p-10 border border-[#EADBCE]/80 shadow-md">
-          {/* Left/Center Amenities Grid */}
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 text-center">
+      {/* CỘT NỘI DUNG: Nằm trong grid chuẩn max-w-7xl của trang, canh giữa trong vùng bên trái */}
+      <div className="w-full max-w-7xl xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex items-center">
+        <div className="w-full lg:w-[60%] xl:w-[62%] py-2 sm:py-4 flex flex-col justify-center items-center text-center">
+          {/* Header: Tagline & Tiêu đề */}
+          <div className="mb-6 sm:mb-7">
+            <span className="text-[11px] sm:text-xs tracking-[0.25em] font-semibold text-[#C58940] uppercase">
+              TIỆN NGHI
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-serif font-bold text-[#143827] mt-1.5 tracking-[-0.01em]">
+              Đáp ứng mọi nhu cầu cơ bản
+            </h2>
+          </div>
+
+          {/* Dãy 6 tiện ích dàn hàng ngang có vạch chia mảnh tinh tế đúng mẫu */}
+          <div className="w-full max-w-2xl mx-auto">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-y-4 sm:gap-y-0 sm:divide-x divide-[#E5DEC9]/80 border-y sm:border-0 border-[#E5DEC9]/60 py-4 sm:py-0">
               {amenities.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center justify-center group p-3 rounded-2xl transition-all duration-300 hover:bg-[#FAF4EB]"
+                  className="flex flex-col items-center justify-center py-2 sm:py-1 px-1 sm:px-2 group cursor-default transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-[#143827] group-hover:text-[#1F5C3B] transition-transform duration-300 group-hover:scale-115">
                     {item.icon}
                   </div>
-                  <span className="mt-3 text-xs sm:text-sm font-medium text-[#233F2E]">
+                  <span className="mt-1.5 sm:mt-2 text-[11.5px] sm:text-[13px] font-medium text-[#2A4736] group-hover:text-[#143827] transition-colors whitespace-nowrap">
                     {item.name}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Right Decorative Corner Photo */}
-          <div className="lg:col-span-4 relative rounded-2xl md:rounded-[30px] overflow-hidden shadow-md border-2 border-white aspect-[4/3] w-full">
-            <Image
-              src="/images/amenity_corner.jpg"
-              alt="Góc bếp và bàn ăn tiện nghi Co Homestay"
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              unoptimized
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-4 text-white text-xs font-light">
-              Góc bếp ấm cúng & tiện nghi
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Organic curve transition into Testimonial */}
-      <Wave variant="curve-up" fillColor="#EAF1EB" className="w-full" />
+      {/* CỘT ẢNH GÓC BẾP & BÌNH HOA: Tràn sát mép phải màn hình 100%, cắt vòm cong hữu cơ */}
+      <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[40%] xl:w-[38%] overflow-hidden">
+        <div
+          className="relative w-full h-full overflow-hidden"
+          style={{ clipPath: "url(#amenity-organic-curve)" }}
+        >
+          <Image
+            src="/images/amenity_banner_hd.jpg"
+            alt="Góc tiện nghi Cỏ Homestay Vũng Tàu"
+            fill
+            priority={false}
+            unoptimized
+            className="object-cover object-[82%_45%] brightness-[1.03] transition-transform duration-700 hover:scale-105"
+          />
+        </div>
+
+        {/* Viền đôi màu trắng & vàng cát chạy dọc đường cong uốn lượn sắc nét */}
+        <svg
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          aria-hidden="true"
+        >
+          <path
+            d="M 16,0 C 6,12 3,24 5,36 C 7,50 15,58 13,72 C 11,85 3,94 0,100"
+            fill="none"
+            stroke="white"
+            strokeWidth="2.5"
+            vectorEffect="non-scaling-stroke"
+            opacity="0.95"
+          />
+          <path
+            d="M 17,0 C 7,12 4,24 6,36 C 8,50 16,58 14,72 C 12,85 4,94 1,100"
+            fill="none"
+            stroke="#E5DEC9"
+            strokeWidth="1.2"
+            vectorEffect="non-scaling-stroke"
+            opacity="0.8"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

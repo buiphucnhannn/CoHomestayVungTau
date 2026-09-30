@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FinalCta({ onOpenBooking }) {
   return (
-    <section id="lien-he" className="relative py-12 md:py-16">
+    <section id="lien-he" className="relative py-14 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-[32px] md:rounded-[48px] overflow-hidden min-h-[380px] md:min-h-[440px] flex items-center shadow-2xl border-4 border-white/80">
           {/* Full Sunset Photography Background */}

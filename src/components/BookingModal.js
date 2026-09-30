@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BookingModal({
   isOpen,
@@ -9,6 +9,15 @@ export default function BookingModal({
 }) {
   const [selectedRoom, setSelectedRoom] = useState(initialRoom);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Khóa cuộn trang nền khi form mở để không trượt ở ngoài
+  useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -22,8 +31,14 @@ export default function BookingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm transition-opacity">
-      <div className="relative w-full max-w-lg bg-[#EAF1EB] rounded-3xl shadow-2xl border border-[#D5E3D8] p-6 sm:p-8 overflow-hidden animate-soft-pulse">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm transition-opacity"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-lg bg-[#EAF1EB] rounded-3xl shadow-2xl border border-[#D5E3D8] p-6 sm:p-8 overflow-hidden"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -47,12 +62,14 @@ export default function BookingModal({
           </div>
         ) : (
           <div>
-            <span className="text-[11px] tracking-[0.2em] font-semibold text-[#C58940] uppercase">
-              ĐẶT PHÒNG CỎ HOMESTAY
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#143827] mt-1 mb-4">
-              Đặt phòng nhanh chóng
-            </h3>
+            <div className="text-center mb-5 sm:mb-6">
+              <span className="text-[11px] tracking-[0.22em] font-semibold text-[#C58940] uppercase">
+                ĐẶT PHÒNG CỎ HOMESTAY
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#143827] mt-1.5">
+                Đặt phòng nhanh chóng
+              </h3>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -132,7 +149,7 @@ export default function BookingModal({
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-[#143827] hover:bg-[#1C4D36] text-white py-3 rounded-xl font-medium text-sm transition-all shadow-md active:scale-95"
+                  className="flex-1 bg-[#1F5C3B] hover:bg-[#27734A] text-white py-3 rounded-xl font-medium text-sm transition-all shadow-md active:scale-95"
                 >
                   Gửi yêu cầu đặt phòng
                 </button>
