@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #EAF1EB;
+    color: #143827;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Glassmorphism pill & nav styles */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px -10px rgba(20, 56, 39, 0.08);
+}
+
+.glass-nav {
+  background: rgba(234, 241, 235, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Custom curved shape for section 2 photo */
+.organic-bedroom-shape {
+  border-radius: 40px 180px 40px 40px;
+}
+
+@media (max-width: 768px) {
+  .organic-bedroom-shape {
+    border-radius: 32px;
+  }
+}
+
+/* Micro-animations */
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bounce-down {
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EAF1EB;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D5F44;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #143827;
+}
+
+/* Hide Next.js dev indicator badge completely */
+nextjs-portal,
+[data-nextjs-dev-tools-button],
+[data-nextjs-toast],
+#next-logo,
+[data-nextjs-dev-indicator],
+div[class*="nextjs-dev-indicator"],
+div[data-next-badge] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
